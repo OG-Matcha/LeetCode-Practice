@@ -4,47 +4,61 @@
 Given an m x n matrix, return all elements of the matrix in spiral order.
 '''
 
+# https://leetcode.com/problems/spiral-matrix/description/
+
+
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        #get number of rows in the matrix
-        m = len(matrix)
 
-        #get number of coloumn in the matrix
+        m = len(matrix)
         n = len(matrix[0])
 
-        #set boundaries
         left = 0
         right = n - 1
         up = 0
         down = m - 1
 
-        #set an empty list
-        res = []
+        total = m * n
+        ans = []
 
-        #traverse though matrix untill all elements are met
-        while len(res) < (m * n):
-            #traverse from left to right on top
+        while len(ans) < total:
+
             if up <= down:
-                for j in range(left, right + 1):
-                    res.append(matrix[up][j])
+                for i in range(left, right + 1):
+                    ans.append(matrix[up][i])
                 up += 1
 
-            #traverse from up to down on the right side
             if left <= right:
                 for i in range(up, down + 1):
-                    res.append(matrix[i][right])
+                    ans.append(matrix[i][right])
                 right -= 1
 
-            #traverse from right to left on bottom
             if up <= down:
-                for j in reversed(range(left, right + 1)):
-                    res.append(matrix[down][j])
+                for i in reversed(range(left, right + 1)):
+                    ans.append(matrix[down][i])
                 down -= 1
 
-            #traverse from down to up on the left side
             if left <= right:
                 for i in reversed(range(up, down + 1)):
-                    res.append(matrix[i][left])
+                    ans.append(matrix[i][left])
                 left += 1
 
-        return res
+        return ans
+
+# Time complexity = O(m * n) where m is the length of columns and n is the length of rows
+# Space complexity = O(1) without counting the answer
+
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+
+        ans = []
+
+        while matrix:
+            ans += matrix.pop(0)
+            matrix = list(zip(*matrix))[::-1]
+
+        return ans
+
+# Time complexity = O(min(m, n) * m * n) where m is the length of columns and n is the length of rows
+# Space complexity = O(1) without counting the answer
