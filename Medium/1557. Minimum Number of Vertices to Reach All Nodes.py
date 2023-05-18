@@ -29,5 +29,5 @@ class Solution:
 
         return [i for i in range(len(data)) if data[i]]
     
-# Time complexity = O(n) where n is the length of the edges
+# Time complexity = O(n + k) where n is the number of vertices and k is the number of edges.
 # Time complexity = O(n)
