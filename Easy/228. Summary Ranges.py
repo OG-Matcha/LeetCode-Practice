@@ -15,6 +15,8 @@ Each range [a,b] in the list should be output as:
 • "a" if a == b
 '''
 
+# https://leetcode.com/problems/summary-ranges/editorial/
+
 class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
 
@@ -38,3 +40,30 @@ class Solution:
             result.append(str(curr[0]) + "->" + str(curr[-1]))
         
         return result
+
+# Time complexity = (n) where n is the length of the nums
+# Space complexity = (n)
+
+class Solution:
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+
+        res = []
+        i = 0
+
+        while i < len(nums):
+            curr = nums[i]
+
+            while i + 1 < len(nums) and nums[i + 1] == nums[i] + 1:
+                i += 1
+            
+            if curr != nums[i]:
+                res.append(f"{curr}->{nums[i]}")
+            else:
+                res.append(f"{curr}")
+            
+            i += 1
+        
+        return res
+
+# Time complexity = O(n)
+# Space complexity = O(1)
