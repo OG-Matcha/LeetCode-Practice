@@ -36,6 +36,32 @@ class Solution:
         for num, freq in count:
             bucket[freq].append(num)
 
+        ans = []
+        idx = len(nums)
+
+        while k > 0:
+            while not bucket[idx]:
+                idx -= 1
+
+            for num in bucket[idx]:
+                if k == 0:
+                    break
+                ans.append(num)
+                k -= 1
+
+            idx -= 1
+
+        return ans
+
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        bucket = [[] for _ in range(len(nums) + 1)]
+        count = collections.Counter(nums).items()
+
+        for num, freq in count:
+            bucket[freq].append(num)
+
         lst = [item for sub in bucket for item in sub]
 
         return lst[::-1][:k]
