@@ -58,5 +58,5 @@ class Solution:
 
         return data.index(max(data)) + 1
 
-# Time complexity = O(n)
-# Space complexity = O(n)
+# Time complexity = O(n) where n is the number of nodes and h is the height of the tree
+# Space complexity = O(h)
